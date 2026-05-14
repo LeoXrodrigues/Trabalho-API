@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors'); // <-- Importar CORS
 const db = require('./database');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
+app.use(cors()); // <-- Liberar CORS para todas as origens
 app.use(express.json());
+
+const PORT = process.env.PORT || 3000;
 
 // -------------------- LOGIN --------------------
 app.post('/login', (req, res) => {
@@ -141,6 +144,7 @@ app.delete('/jogos/:id', (req, res) => {
   });
 });
 
+// -------------------- INICIAR SERVIDOR --------------------
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
